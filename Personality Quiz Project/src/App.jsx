@@ -1,10 +1,8 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const PersonalityTypes = [
+  const personalityTypes = [
     {
       name: "Introvert",
       id: "I",
@@ -171,7 +169,8 @@ function App() {
   ];
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [personalityCounts, setPersonalityCounts] = useState(PersonalityTypes);
+  const [personalityCounts, setPersonalityCounts] = useState(personalityTypes);
+  const [quizStarted, setQuizStarted] = useState(false);
 
   const handleOptionSelect = (optionId, optionPType) => {
     const updatedCounts = personalityCounts.map(personality => {
@@ -181,7 +180,7 @@ function App() {
       return personality;
     });
     setPersonalityCounts(updatedCounts);
-    //console.log("Updated counts:", personalityCounts);
+    console.log("Updated counts:", personalityCounts);
 
     setTimeout(() => {
       if (currentQuestionIndex < questions.length) {
@@ -190,7 +189,41 @@ function App() {
     }, 0); // Delay before showing the next question
   };
 
-  const renderQuestion = (question) => (
+  const handleReturnHome = () => {
+    setCurrentQuestionIndex(0)
+    setPersonalityCounts(personalityTypes)
+    setQuizStarted(false)
+  }
+
+  const calculateCode = () => {
+    let personalityString = '';
+    const pairs = {
+      'I': 'E',
+      'S': 'N',
+      'T': 'F',
+      'J': 'P'
+    };
+
+    for (let i = 0; i < personalityTypes.length; i += 2) {
+      const firstType = personalityTypes[i];
+      const secondType = personalityTypes[i + 1];
+      const firstCount = personalityCounts.find(personality => personality.id === firstType.id).count;
+      const secondCount = personalityCounts.find(personality => personality.id === secondType.id).count;
+
+      if (firstCount > secondCount) {
+        personalityString += firstType.id;
+      } else if (secondCount > firstCount) {
+        personalityString += secondType.id;
+      } else {
+        // If counts are equal, choose the first type
+        personalityString += firstType.id;
+      }
+    }
+
+    return personalityString;
+  };
+
+const renderQuestion = (question) => (
     <div key={question.id}>
       <div>{question.id}/15</div>
       <h3>{question.text}</h3>
@@ -202,21 +235,42 @@ function App() {
           >
             {option.text}
           </button>
+          <div>  </div>
         </div>
       ))}
     </div>
   );
 
-  return (
+  const renderQuiz = () => (
     <div>
-      <h1>Superhero Personality Quiz</h1>
       {currentQuestionIndex < questions.length ? (
         renderQuestion(questions[currentQuestionIndex])
       ) : (
         <div>
           <h2>Quiz Completed!</h2>
           <p>Thank you for taking the quiz.</p>
+          <h3>{calculateCode()}</h3>
+          <button onClick={handleReturnHome}> Return Home </button>
         </div>
+      )}
+    </div>
+  );
+
+  const renderHomeScreen = () => (
+    <div>
+      <h1>What's Your Superhero Persona?</h1>
+      <div>
+        <button onClick={() => setQuizStarted(true)}> Start Quiz </button>
+      </div>
+    </div>
+  );
+
+  return (
+    <div>
+      {!quizStarted ? (
+        renderHomeScreen()
+      ) : (
+        renderQuiz()
       )}
     </div>
   );
