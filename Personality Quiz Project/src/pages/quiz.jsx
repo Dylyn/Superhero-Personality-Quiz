@@ -117,7 +117,7 @@ export default function QuizSection() {
                 { id: "a", text: "Harness your powers to force the door open, eager to explore the secrets hidden within.", PType: "J" },
                 { id: "b", text: "Rely on your supernatural abilities to scout ahead, ensuring safety before venturing inside.", PType: "P" }
             ]
-        }
+        },
         {
             id: 10,
             text: "As you delve into the temple's chambers, you trigger a series of traps! How do you navigate them with your superpowers?",
