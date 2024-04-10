@@ -1,7 +1,27 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import ISTJ from "../images/ISTJ.jpg"
+import ISFJ from "../images/ISFJ.jpg"
+import INFJ from "../images/INFJ.jpg"
+import INTJ from "../images/INTJ.jpg"
+import ISTP from "../images/ISTP.jpg"
+import ISFP from "../images/ISFP.jpg"
+import INFP from "../images/INFP.jpg"
+import INTP from "../images/INTP.jpg"
+import ESTP from "../images/ESTP.jpg"
+import ESFP from "../images/ESFP.jpg"
+import ENFP from "../images/ENFP.jpg"
+import ENTP from "../images/ENTP.jpg"
+import ESTJ from "../images/ESTJ.jpg"
+import ESFJ from "../images/ESFJ.jpg"
+import ENFJ from "../images/ENFJ.jpg"
+import ENTJ from "../images/ENTJ.jpg"
 
 export default function QuizSection() {
+    const navigate = useNavigate();
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const [personalityCounts, setPersonalityCounts] = useState(personalityTypes);
+
     const personalityTypes = [
         {
         name: "Introvert",
@@ -144,10 +164,6 @@ export default function QuizSection() {
         }
     ];
 
-    const navigate = useNavigate();
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [personalityCounts, setPersonalityCounts] = useState(personalityTypes);
-
     const handleOptionSelect = (optionId, optionPType) => {
         const updatedCounts = personalityCounts.map(personality => {
         if (personality.id === optionPType) {
@@ -170,6 +186,26 @@ export default function QuizSection() {
         setPersonalityCounts(personalityTypes)
         navigate('/');
         //ROUTE BACK TO '/'
+    }
+
+    const codeToImage = {
+        'ISTJ': ISTJ,
+        'ISFJ': ISFJ,
+        'INFJ': INFJ,
+        'INTJ': INTJ,
+        'ISTJ': ISTJ,
+        'ISTP': ISTP,
+        'ISFP': ISFP,
+        'INFP': INFP,
+        'INTP': INTP,
+        'ESTP': ESTP,
+        'ESFP': ESFP,
+        'ENFP': ENFP,
+        'ENTP': ENTP,
+        'ESTJ': ESTJ,
+        'ESFJ': ESFJ,
+        'ENFJ': ENFJ,
+        'ENTJ': ENTJ,
     }
 
     const calculateCode = () => {
@@ -200,6 +236,9 @@ export default function QuizSection() {
         return personalityString;
     };
 
+    const code = calculateCode();
+    const imageResult = codeToImage[code]
+
     const renderQuestion = (question) => (
         <div key={question.id}>
         <div>{question.id}/12</div>
@@ -225,9 +264,12 @@ export default function QuizSection() {
         ) : (
             <div>
             <h2>Quiz Completed!</h2>
-            <p>Thank you for taking the quiz.</p>
-            <h3>{calculateCode()}</h3>
-            <button onClick={handleReturnHome}> Return Home </button>
+            <p>Looks like you are the...</p>
+            <img src={imageResult} height={400} width={400} style={{ border: '7px solid black', marginTop: '20px' }}/>
+            <div>
+                <button onClick={handleReturnHome} style={{ marginTop: '20px' }}> Return Home </button>
+            </div>
+            
             </div>
         )}
       </div>
