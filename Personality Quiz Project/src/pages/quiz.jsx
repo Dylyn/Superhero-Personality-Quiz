@@ -202,7 +202,7 @@ export default function QuizSection() {
 
     const renderQuestion = (question) => (
         <div key={question.id}>
-        <div>{question.id}/15</div>
+        <div>{question.id}/12</div>
         <h3>{question.text}</h3>
         {question.options.map(option => (
             <div key={option.id}>
