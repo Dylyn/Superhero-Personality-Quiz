@@ -147,6 +147,9 @@ export default function AboutSection() {
         <div>
             <button onClick={handleReturnHome} style={{ marginTop: '20px' }}> Return Home </button>
         </div>
+        <footer style={{marginTop: '50px', fontSize: '14px'}}>
+        all illustrations made by myself
+      </footer>
     </>
     )
 }
