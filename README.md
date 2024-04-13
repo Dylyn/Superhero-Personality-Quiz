@@ -2,4 +2,4 @@
 
 personality quiz inspired by the MBTI personality types
 
-take the quiz here: https://creative-dango-6a17ea.netlify.app/
+take the quiz here: https://superhero-personality-quiz.netlify.app/
