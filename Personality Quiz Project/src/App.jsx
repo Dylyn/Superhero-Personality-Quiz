@@ -35,7 +35,11 @@ function HomeScreen() {
         <button style={{ marginRight: '20px' }} onClick={handleStartQuiz}> Start Quiz </button>
         <button onClick={handleAbout}> All Personas </button>
       </div>
+      <footer style={{marginTop: '50px', fontSize: '14px'}}>
+        <a /*href="https://github.com/Dylyn" target="_blank"*/>&copy; 2024 Dylan Chipun</a>
+      </footer>
     </div>
+    
   );
 }
 

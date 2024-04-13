@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ISTJ from "../images/ISTJ.jpg"
 import ISFJ from "../images/ISFJ.jpg"
 import INFJ from "../images/INFJ.jpg"
@@ -285,20 +285,20 @@ export default function QuizSection() {
     );
 
     return (
-      <div>
-        {currentQuestionIndex < questions.length ? (
-            renderQuestion(questions[currentQuestionIndex])
-        ) : (
-            <div>
-            <h2>Quiz Completed!</h2>
-            <p>Looks like you are the...</p>
-            <img src={imageResult} height={400} width={400} style={{ border: '7px solid black', marginTop: '20px' }}/>
-            <div>
-                <button onClick={handleReturnHome} style={{ marginTop: '20px' }}> Return Home </button>
-            </div>
-            
-            </div>
-        )}
-      </div>
+        <div>
+            {currentQuestionIndex < questions.length ? (
+                renderQuestion(questions[currentQuestionIndex])
+            ) : (
+                <div>
+                <h2>Quiz Completed!</h2>
+                <p>Looks like you are the...</p>
+                <img src={imageResult} height={300} width={300} style={{ border: '7px solid black', marginTop: '20px' }}/>
+                <div>
+                    <button onClick={handleReturnHome} style={{ marginTop: '20px' }}> Return Home </button>
+                </div>
+                
+                </div>
+            )}
+        </div>
     )
 }
