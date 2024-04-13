@@ -1,3 +1,3 @@
-# Big-Boys-in-The-Yard
+# Superhero Personality Quiz
 
-for personality quiz proj
+personality quiz inspired by the MBTI personality types
